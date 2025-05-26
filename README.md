@@ -35,10 +35,5 @@ Ensure the following tools are installed before setup:
 
 ---
 
-## ⚙️ Setup Instructions
 
-### 1️⃣ Clone the Repository
-```bash
-git clone https://github.com/leandre000/voting-dapp.git
-cd voting-dapp
 
