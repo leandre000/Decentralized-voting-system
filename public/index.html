@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A Simple Voting DApp</title>
+  <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-light: #f9fafb;
+      --text-light: #1f2937;
+      --bg-dark: #1e293b;
+      --text-dark: #f9fafb;
+      --primary: #6366f1;
+      --primary-hover: #4f46e5;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-light);
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    html.dark {
+      background-color: var(--bg-dark);
+      color: var(--text-dark);
+    }
+
+    body {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 30px 20px;
+    }
+
+    h1, h2 {
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+    }
+
+    h2 {
+      font-size: 1.3rem;
+    }
+
+    #account {
+      background-color: #e5e7eb;
+      color: #111827;
+      padding: 12px;
+      border-radius: 8px;
+      margin: 15px 0;
+      font-weight: 500;
+    }
+
+    html.dark #account {
+      background-color: #334155;
+      color: #f9fafb;
+    }
+
+    button {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: var(--primary-hover);
+    }
+
+    input {
+      padding: 10px;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      margin-right: 10px;
+      width: 60%;
+      transition: border-color 0.3s;
+    }
+
+    html.dark input {
+      background-color: #1e293b;
+      border-color: #475569;
+      color: #f9fafb;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    #candidates {
+      list-style: none;
+      margin-top: 10px;
+      padding: 0;
+    }
+
+    #candidates li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #fff;
+      border: 1px solid #e5e7eb;
+      padding: 12px;
+      border-radius: 8px;
+      margin: 8px 0;
+      transition: background-color 0.3s;
+    }
+
+    html.dark #candidates li {
+      background-color: #334155;
+      border-color: #475569;
+    }
+
+    .add-candidate {
+      margin-top: 30px;
+      padding: 20px;
+      border-radius: 12px;
+      background-color: #f3f4f6;
+      border: 1px solid #e5e7eb;
+    }
+
+    html.dark .add-candidate {
+      background-color: #1e293b;
+      border-color: #475569;
+    }
+
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: transparent;
+      border: 2px solid var(--primary);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--primary);
+      transition: all 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+      background: var(--primary);
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <button class="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
+
+  <h1>A Simple Voting Distributed Application Smart Contract</h1>
+  
+  <div>
+    <p id="account">Not connected</p>
+    <button onclick="connectMetaMask()">Connect MetaMask</button>
+  </div>
+
+  <div class="add-candidate">
+    <h2>Add New Candidate</h2>
+    <div>
+      <input type="text" placeholder="Enter Candidate Name" id="candidateInput" />
+      <button onclick="addCandidate()">Add Candidate</button>
+    </div>
+  </div>
+
+  <div>
+    <h2>Current Candidates</h2>
+    <ul id="candidates"></ul>
+  </div>
+
+  <script>
+    // Theme toggle logic
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const savedTheme = localStorage.getItem('theme');
+
+    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+      document.documentElement.classList.add('dark');
+    }
+
+    function toggleTheme() {
+      document.documentElement.classList.toggle('dark');
+      const isDark = document.documentElement.classList.contains('dark');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    }
+  </script>
+
+  <script src="app.js"></script>
+</body>
+</html>
