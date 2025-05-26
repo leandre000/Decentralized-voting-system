@@ -42,33 +42,3 @@ Ensure the following tools are installed before setup:
 git clone https://github.com/leandre000/voting-dapp.git
 cd voting-dapp
 
-🧪 Usage Guide
-🦊 Connect your MetaMask wallet to the Ganache network (http://localhost:7545)
-
-🔗 Click the "Connect MetaMask" button
-
-👁️ View the list of candidates
-
-🗳️ Click "Vote" next to your preferred candidate
-
-✅ Confirm the transaction in MetaMask
-
-📊 Watch the vote count update live!
-
-📝 Smart Contract Features
-The Solidity smart contract handles:
-
-🧑‍💼 Candidate Management
-
-🔄 Voting Mechanism
-
-📊 Vote Tracking
-
-📢 Event Emission for frontend updates
-
-🔒 Security Measures
-❌ Double voting is strictly prevented
-
-✅ Validates candidate IDs
-
-🧍 Enforces one vote per Ethereum address
